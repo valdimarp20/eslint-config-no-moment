@@ -6,7 +6,7 @@
   "author": "Valdimar John Parks",
   "license": "MIT",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "@valdimarp20:registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
