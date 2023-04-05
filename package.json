@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Valdimar John Parks",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/valdimarp20/software-maintenance-tic-tac-toe.git"
