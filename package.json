@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Valdimar John Parks",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valdimarp20/software-maintenance-tic-tac-toe.git"
+  },
   "scripts": {
     "test": "vitest"
   },
