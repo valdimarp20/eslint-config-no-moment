@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/valdimarp20/software-maintenance-tic-tac-toe.git"
+    "url": "git+https://github.com/valdimarp20/eslint-config-no-moment.git"
   },
   "scripts": {
     "test": "vitest"
