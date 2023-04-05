@@ -22,7 +22,7 @@ jobs:
         run: npm test
 
   publish-gpr:
-    name: Publish to NPM
+    name: Publish
     needs: test
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://npm.pkg.github.com
+          registry-url: https://npm.pkg.github.com/
       - run: npm ci
       - run: npm publish
         env:
