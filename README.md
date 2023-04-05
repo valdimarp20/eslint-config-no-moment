@@ -5,9 +5,9 @@ ESLint config that forbids the use of Moment.js library.
 ## Installation
 
 ```sh
-npm install eslint-config-no-moment --save-dev
+npm install @valdimarp20/eslint-config-no-moment@1.0.0
 ```
 
 ## Usage
 
-Add `"extends": "eslint-config-no-moment"` to your `.eslintrc` file.
+Add "extends": "@valdimarp20/eslint-config-no-moment" to your .eslintrc file.
