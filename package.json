@@ -1,0 +1,16 @@
+{
+  "name": "eslint-config-no-moment",
+  "version": "1.0.0",
+  "description": "ESLint config that forbids Moment.js usage.",
+  "main": "index.js",
+  "author": "Valdimar John Parks",
+  "license": "MIT",
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "eslint": "^8.37.0",
+    "vitest": "^0.29.8"
+  }
+}
