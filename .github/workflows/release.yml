@@ -36,6 +36,9 @@ jobs:
           node-version: 18
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
-      - run: npm publish
+      - uses: semantic-release/npm@v3
+        with:
+          registry: https://npm.pkg.github.com/
+          npm_version: 'latest'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
