@@ -1,6 +1,6 @@
 {
   "name": "@valdimarp20/eslint-config-no-moment",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ESLint config that forbids Moment.js usage.",
   "main": "index.js",
   "author": "Valdimar John Parks",
