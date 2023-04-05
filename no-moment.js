@@ -3,29 +3,32 @@ module.exports = {
     type: "problem",
     docs: {
       description: "Forbid the use of the Moment.js library",
-      category: "Possible Errors",
-    },
-    messages: {
-      noMoment: "The use of Moment.js library is forbidden.",
+      category: "Best Practices",
+      recommended: true,
     },
   },
-  create: function (context) {
+  create(context) {
     return {
       ImportDeclaration(node) {
         if (node.source.value === "moment") {
           context.report({
             node,
-            messageId: "noMoment",
+            message: "The use of Moment.js library is forbidden.",
           });
         }
       },
       CallExpression(node) {
-        const { callee } = node;
-        if (callee.type === "Identifier" && callee.name === "moment") {
-          context.report({
-            node,
-            messageId: "noMoment",
-          });
+        if (
+          node.callee.type === "Identifier" &&
+          node.callee.name === "require"
+        ) {
+          const arg = node.arguments[0];
+          if (arg && arg.type === "Literal" && arg.value === "moment") {
+            context.report({
+              node,
+              message: "The use of Moment.js library is forbidden.",
+            });
+          }
         }
       },
     };
