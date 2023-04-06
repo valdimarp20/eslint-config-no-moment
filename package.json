@@ -1,19 +1,17 @@
 {
   "name": "@valdimarp20/eslint-config-no-moment",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "ESLint config that forbids Moment.js usage.",
   "main": "index.js",
   "author": "Valdimar John Parks",
   "license": "MIT",
-  "publishConfig": {
-    "@valdimarp20:registry": "https://npm.pkg.github.com"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/valdimarp20/eslint-config-no-moment.git"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.57.1",
