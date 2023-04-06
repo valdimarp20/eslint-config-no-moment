@@ -1,67 +1,55 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   test:
-    name: Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
 
       - name: Run tests
         run: npm test
 
-  publish-gpr:
-    name: Publish
+  publish:
     needs: test
-    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://npm.pkg.github.com/
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Get Current Version
-        run: |
-          echo '::set-output name=current_version::'"$(npm version | grep @ | sed -re 's/.*'\'':'\'' (.*),?/\1/g' | sed "s/',?$//")"
-        id: get_version
-
-      - name: Bump Version
-        run: |
-          current_version=$(npm version | awk -F'[=v]' '{print $3}')
-          new_version=$(echo "$current_version" | awk -F'[.]' '{print $1 "." $2+1 ".0"}')
-          echo "::set-output name=new_version::$new_version"
-          npm --no-git-tag-version version $new_version
-        id: bump_version
-
-
-      - name: Commit and Push Changes
-        run: |
-          git add package.json package-lock.json CHANGELOG.md
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "chore(release): v${{ steps.bump_version.outputs.new_version }}"
-          git push
 
       - name: Publish to GitHub Packages
-        run: npm publish --access public
+        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" >> .npmrc && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Description of the release.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
