@@ -6,7 +6,8 @@ module.exports = {
       category: "Best Practices",
       recommended: true,
     },
-    severity: 2,
+    fixable: "code",
+    schema: [],
   },
   create: function (context) {
     return {
@@ -15,6 +16,9 @@ module.exports = {
           context.report({
             node: node,
             message: "Usage of Moment.js library is forbidden.",
+            fix: (fixer) => {
+              return fixer.remove(node);
+            },
           });
         }
       },
@@ -26,6 +30,9 @@ module.exports = {
           context.report({
             node: node,
             message: "Usage of Moment.js library is forbidden.",
+            fix: (fixer) => {
+              return fixer.remove(node);
+            },
           });
         }
       },
