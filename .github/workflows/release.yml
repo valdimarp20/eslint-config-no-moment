@@ -40,7 +40,8 @@ jobs:
         run: npm ci
 
       - name: Get Current Version
-        run: echo "::set-output name=current_version::$(npm version | grep @ | sed -re "s/.*': '(.*)',?/\1/g" | sed "s/',?$//")"
+        run: |
+          echo "::set-output name=current_version::$(npm version | grep @ | sed -re \"s/.*': '(.*)',?/\\1/g\" | sed \"s/',?$//\")"
         id: get_version
 
       - name: Bump Version
