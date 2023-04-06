@@ -18,6 +18,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Get Current Version
+        run: echo "::set-output name=current_version::$(npm version | awk -F'[=v]' '{print $3}')"
+        id: get_version
+
       - name: Run tests
         run: npm test
 
