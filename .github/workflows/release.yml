@@ -41,7 +41,7 @@ jobs:
 
       - name: Get Current Version
         run: |
-          echo "::set-output name=current_version::$(npm version | grep @ | sed -re \"s/.*': '(.*)',?/\\1/g\" | sed \"s/',?$//\")"
+          echo '::set-output name=current_version::'"$(npm version | grep @ | sed -re 's/.*'\'':'\'' (.*),?/\1/g' | sed "s/',?$//")"
         id: get_version
 
       - name: Bump Version
