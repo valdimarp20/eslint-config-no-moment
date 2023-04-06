@@ -6,6 +6,7 @@ module.exports = {
       category: "Best Practices",
       recommended: true,
     },
+    severity: 2,
   },
   create: function (context) {
     return {
