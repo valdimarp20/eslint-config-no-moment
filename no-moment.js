@@ -1,13 +1,13 @@
 module.exports = {
   meta: {
-    type: "suggestion",
+    type: "problem",
     docs: {
       description: "forbid usage of moment",
-      category: "Best Practices",
-      recommended: true,
+      category: "Possible Errors",
     },
-    fixable: "code",
-    schema: [],
+    messages: {
+      noMoment: "Usage of Moment.js library is forbidden.",
+    },
   },
   create: function (context) {
     return {
@@ -15,10 +15,7 @@ module.exports = {
         if (node.source.value === "moment") {
           context.report({
             node: node,
-            message: "Usage of Moment.js library is forbidden.",
-            fix: (fixer) => {
-              return fixer.remove(node);
-            },
+            messageId: "noMoment",
           });
         }
       },
@@ -29,10 +26,7 @@ module.exports = {
         ) {
           context.report({
             node: node,
-            message: "Usage of Moment.js library is forbidden.",
-            fix: (fixer) => {
-              return fixer.remove(node);
-            },
+            messageId: "noMoment",
           });
         }
       },
