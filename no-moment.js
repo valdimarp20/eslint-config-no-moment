@@ -1,21 +1,11 @@
 module.exports = {
-  meta: {
-    type: "problem",
-    docs: {
-      description: "forbid usage of moment",
-      category: "Possible Errors",
-    },
-    messages: {
-      noMoment: "Usage of Moment.js library is forbidden.",
-    },
-  },
   create: function (context) {
     return {
       ImportDeclaration(node) {
         if (node.source.value === "moment") {
           context.report({
             node: node,
-            messageId: "noMoment",
+            message: "Usage of Moment.js library is forbidden.",
           });
         }
       },
@@ -26,7 +16,7 @@ module.exports = {
         ) {
           context.report({
             node: node,
-            messageId: "noMoment",
+            message: "Usage of Moment.js library is forbidden.",
           });
         }
       },
